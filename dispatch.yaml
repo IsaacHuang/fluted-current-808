@@ -1,0 +1,10 @@
+application: fluted-current-808
+
+dispatch:
+# Default module serves the typical web resources and all static resources.
+- url: "*/favicon.ico"
+  module: default
+
+- url: "*/solve*"
+  module: solver
+
