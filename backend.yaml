@@ -1,4 +1,4 @@
-application: vm-runtime-tester
+application: fluted-current-808
 version: opencv
 module: solver
 runtime: python27
