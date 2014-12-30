@@ -23,7 +23,7 @@ import webapp2
 
 from google.appengine.api import taskqueue
 
-import utils
+
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
