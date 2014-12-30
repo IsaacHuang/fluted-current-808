@@ -18,6 +18,4 @@ libraries:
 manual_scaling:
   instances: 2
 
-vm_settings:
-  machine_type: n1-standard-1
-  apt_get_install: python-opencv
+

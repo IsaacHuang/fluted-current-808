@@ -30,13 +30,14 @@
 
     <div class="abox">
       <p>Take a screenshot of a Sudoku puzzle:</p>
+      <!--將表格傳送至=>/stage-->
       <form role="form" id="form1" action="/stage" enctype="multipart/form-data" method="post">
         <input type="hidden" name="sudoku" id="sudoku">
         <input type="hidden" name="is_video" id="is_video" value="yes">
+        <!--執行拍照-->
         <button type="button" class="btn btn-primary" id="screenshot-button">Take!</button>
         <input type="submit" class="btn btn-primary" value="Solve" id="solve">
-        <button type="button" disabled class="btn btn-primary" name="showvid-button"
-          id="showvid-button">Again!</button>
+        <button type="button" disabled class="btn btn-primary" name="showvid-button"id="showvid-button">Again!</button>
       </form> <br/>
       <div class="row">
         <div class="col-md-5">
@@ -70,33 +71,34 @@
 
     var formData = new FormData($(this)[0]);
     $.ajax({
-    url:$(this).attr("action"),
-    type: 'POST',
-    data: formData,
-    async: false,
-    success: function (data) {
-      console.log(data);
-      var solved_url = data.solved_url;
-      if (solved_url) {
-      // check for results to show up
-      setTimeout(function show_results() {
-        console.log("in setTimeout, checking " + solved_url);
-        var img = new Image();
-        img.onload = function() {
-          $('#puzzleres').attr('src', solved_url);
-          $('#puzzleres').show();
-          $("#showvid-button").prop("disabled",false);
-        };
-        img.onerror = function() {
-          setTimeout(show_results, 200);
+      url:$(this).attr("action"),
+      type: 'POST',
+      data: formData,
+      async: false,
+      success: function (data) {
+        console.log(data);
+        var solved_url = data.solved_url;
+      
+        if (solved_url) {
+        // check for results to show up
+          setTimeout(function show_results() {
+            console.log("in setTimeout, checking " + solved_url);
+            var img = new Image();
+            img.onload = function() {
+              $('#puzzleres').attr('src', solved_url);
+              $('#puzzleres').show();
+              $("#showvid-button").prop("disabled",false);
+            };
+            img.onerror = function() {
+              setTimeout(show_results, 200);
+            }
+            img.src = solved_url;
+          }, 200);
         }
-        img.src = solved_url;
-        }, 200);
-       }
-    },
-    cache: false,
-    contentType: false,
-    processData: false
+      },
+      cache: false,
+      contentType: false,
+      processData: false
     });
     return false;
 });
@@ -129,7 +131,7 @@ function sizeCanvas() {
     canvas.height = videoElement.videoHeight;
     img.height = videoElement.offsetHeight;
     img.width = videoElement.offsetWidth;
-  }, 100);
+  }, 1000);
 }
 
 

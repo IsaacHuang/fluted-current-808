@@ -48,16 +48,18 @@ class MainHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.out.write(template.render({}))
 
-class UploadImage(webapp2.RequestHandler):
+class UploadImage(webapp2.RequestHandler):#上傳圖片的class
     """Handles requests to show a puzzle upload page, which supports upload of sudoku
     image files."""
 
+    """顯示上傳頁面函數"""
     def get(self):
         """Display the puzzle upload page."""
 
         template = JINJA_ENVIRONMENT.get_template('templates/upload.html')
         self.response.out.write(template.render({}))
 
+"""儲存資料的class"""
 class SolveStage(webapp2.RequestHandler):
     """Handles a request with a sudoku image to solve.
     Accepts binary (as from <input type="file">) as default, and looks for an image
@@ -66,6 +68,7 @@ class SolveStage(webapp2.RequestHandler):
     """
     api_url = 'https://storage.googleapis.com'
 
+    """錯誤訊息的回應函數"""
     def generate_error_response(self, filename, solved_url):
         # We got an error, so we'll copy an error message image to the GCS file
         # indicated to contain the result.
@@ -75,6 +78,7 @@ class SolveStage(webapp2.RequestHandler):
         resp = {'status': 'ERROR', 'solved_url' : solved_url}
         return json.dumps(resp)
 
+    """接收post資料的函數"""    
     def post(self):
         """Handles the post request with the sudoku image to solve.
         Accepts binary (as from <input type="file">) as default, and looks for an image
