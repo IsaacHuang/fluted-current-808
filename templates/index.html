@@ -44,10 +44,10 @@
         <div class="col-md-5">
           <!--螢幕的即時呈現-->
           <video id="screenshot-stream" style="width:95%;" autoplay></video>
-          <!--拍照後的圖片呈現-->
           <img style="display:none;width:95%;" id="puzzleres" src="" alt="solved Sudoku image" />
         </div>
         <div class="col-md-5">
+          <!--拍照後圖片呈現-->
           <img id="screenshot" style="width:95%;" src="">
           <canvas id="screenshot-canvas" style="width:95%;display:none;"></canvas>
         </div>
@@ -92,6 +92,7 @@
           setTimeout(function show_results() {
             console.log("in setTimeout, checking " + solved_url);
             var img = new Image();
+            //圖片來源設定
             img.onload = function() {
               $('#puzzleres').attr('src', solved_url);
               $('#puzzleres').show();
@@ -110,7 +111,7 @@
     });
     return false;
 });
-
+//錯誤回傳
 function errorCallback(e) {
   console.log(e);
   if (e.code == 1) {
@@ -203,10 +204,12 @@ function successCallback(stream) {
   videoElement.play();
 }
 
+//錯誤回傳
 function errorCallback(error){
   console.log("navigator.getUserMedia error: ", error);
 }
 
+//開始函數
 function start(){
   if (!!window.stream) {
     videoElement.src = null;
