@@ -6,12 +6,12 @@
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
+              <span class="sr-only">回憶中原，回到中原</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Sudoku Solver</a>
+            <a class="navbar-brand" href="/">回憶中原，回到中原</a>
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -32,6 +32,7 @@
       <p>Take a screenshot of a Sudoku puzzle:</p>
       <!--將表格傳送至=>/stage-->
       <form role="form" id="form1" action="/stage" enctype="multipart/form-data" method="post">
+
         <input type="hidden" name="sudoku" id="sudoku">
         <input type="hidden" name="is_video" id="is_video" value="yes">
         <!--執行拍照-->
@@ -62,10 +63,15 @@
 
 <script>
 
+//Take!按鈕的執行函數
+  $("#screenshot-button").click(function(){
+    $(this).prop("disabled",true);
+
+  });
+//Again!按鈕的執行函數
   $("#showvid-button").click(function(){
     $('#puzzleres').hide();
     $('#screenshot-stream').show();
-    $(this).prop("disabled",true);
   });
 
  $("#form1").submit(function(){

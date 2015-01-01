@@ -1,0 +1,17 @@
+.abox {
+	display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+#error {
+    color: #800;
+}
+body{
+	margin:10px;
+	width:95%;
+}
+.container{
+	
+}
