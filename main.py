@@ -20,6 +20,7 @@ import json
 import logging
 import os
 import webapp2
+import MySQLdb
 
 from google.appengine.api import taskqueue
 
@@ -62,8 +63,15 @@ class UploadImage(webapp2.RequestHandler):#上傳圖片的class====>要重寫
 """儲存資料的class"""
 
 
+class Database(webapp2.RequestHandler):
+    try:
+        db=MySQLdb.connect("140.135.247.116:8889","SA_test","root","root")
+        print "Connection is successful !"
+    except:
+        print "db is Over T_T "
 
 APP = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/upload', UploadImage)
+    ('/upload', UploadImage),
+    ('/db_con',Database)
 ], debug=True)

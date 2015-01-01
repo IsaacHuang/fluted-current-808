@@ -1,19 +1,5 @@
 {% extends "templates/base.html" %}
 {% block content %}
-
-
-  <!-- Static navbar -->
-  <div class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="sr-only">回憶中原，回到中原</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">回憶中原，回到中原</a>
-      </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li ><a href="/">Capture and Solve</a></li>
@@ -35,15 +21,14 @@
           <p class="help-block">Upload an image of a Sudoku puzzle.</p>
         </div>
         <input type="hidden" name="sudoku_url" id="sudoku_url"
-          value="http://storage.googleapis.com/vm-sudoku/unsolved_puzzles/sudoku-book-02.png">
+          value="">
         <input type="submit" class="btn btn-primary" value="Solve" on="submitImage();"><br/>
        </form><br/>
 
        <div class="row">
          <div class="col-md-5">
           <img style="width:95%;" id="puzzle"
-            src="http://storage.googleapis.com/vm-sudoku/unsolved_puzzles/sudoku-book-02.png"
-          alt="Sudoku image" />
+            src="" alt="" />
          </div>
          <div class="col-md-5">
            <img style="display:none;width:95%;" id="puzzleres" src="" alt="solved Sudoku image" />
