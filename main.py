@@ -21,6 +21,7 @@ import logging
 import os
 import webapp2
 import MySQLdb
+import datastore_class
 
 from google.appengine.api import taskqueue
 
