@@ -22,8 +22,8 @@ import os
 import webapp2
 
 from google.appengine.api import taskqueue
-from google.appengine.api import images
-from google.appengine.ext import db
+#from google.appengine.api import images
+#from google.appengine.ext import db
 
 
 
@@ -31,6 +31,7 @@ from google.appengine.ext import db
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'])
+
 
 def decode_if_needed(data):
     if data.startswith('data') and 'base64' in data:
@@ -61,7 +62,7 @@ class UploadImage(webapp2.RequestHandler):#上傳圖片的class====>要重寫
         template = JINJA_ENVIRONMENT.get_template('templates/upload.html')
         self.response.out.write(template.render({}))
 
-"""儲存資料的class
+    儲存資料的class
 class SolveStage(webapp2.RequestHandler):#要重寫
     """Handles a request with a sudoku image to solve.
     Accepts binary (as from <input type="file">) as default, and looks for an image
@@ -137,7 +138,7 @@ class SolveStage(webapp2.RequestHandler):#要重寫
             resp = self.generate_error_response(filename, solved_url)
             self.response.headers['Content-Type'] = 'application/json'
             self.response.write(resp)
-"""
+
 APP = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/upload', UploadImage),
