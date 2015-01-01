@@ -37,11 +37,13 @@
         <!--執行拍照-->
         <button type="button" class="btn btn-primary" id="screenshot-button">Take!</button>
         <input type="submit" class="btn btn-primary" value="Solve" id="solve">
-        <button type="button" disabled class="btn btn-primary" name="showvid-button"id="showvid-button">Again!</button>
+        <button type="button" class="btn btn-primary" name="showvid-button"id="showvid-button">Again!</button>
       </form> <br/>
       <div class="row">
         <div class="col-md-5">
+          <!--螢幕的即時呈現-->
           <video id="screenshot-stream" style="width:95%;" autoplay></video>
+          <!--拍照後的圖片呈現-->
           <img style="display:none;width:95%;" id="puzzleres" src="" alt="solved Sudoku image" />
         </div>
         <div class="col-md-5">
@@ -123,6 +125,7 @@ var localMediaStream = null;
 
 var videoSelect = document.querySelector("select#videoSource");
 
+//設定呈現大小
 function sizeCanvas() {
   // video.onloadedmetadata not firing in Chrome so we have to hack.
   // See crbug.com/110938.

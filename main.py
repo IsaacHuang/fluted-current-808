@@ -48,7 +48,7 @@ class MainHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.out.write(template.render({}))
 
-class UploadImage(webapp2.RequestHandler):#上傳圖片的class
+class UploadImage(webapp2.RequestHandler):#上傳圖片的class====>要重寫
     """Handles requests to show a puzzle upload page, which supports upload of sudoku
     image files."""
 
@@ -60,7 +60,7 @@ class UploadImage(webapp2.RequestHandler):#上傳圖片的class
         self.response.out.write(template.render({}))
 
 """儲存資料的class"""
-class SolveStage(webapp2.RequestHandler):
+class SolveStage(webapp2.RequestHandler):#要重寫
     """Handles a request with a sudoku image to solve.
     Accepts binary (as from <input type="file">) as default, and looks for an image
     file at a specified URL if the binary input is not given.
