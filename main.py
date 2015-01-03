@@ -46,10 +46,17 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         """Display the index page."""
 
-        template = JINJA_ENVIRONMENT.get_template('templates/test_index.html')
+        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.out.write(template.render({}))
 
+class TakePhoto(webapp2.RequestHandler):
 
+    def get(self):
+        """Display the puzzle upload page."""
+
+        template = JINJA_ENVIRONMENT.get_template('templates/upload.html')
+        self.response.out.write(template.render({}))
+        
 APP = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),('/stage',TakePhoto)
 ], debug=True)

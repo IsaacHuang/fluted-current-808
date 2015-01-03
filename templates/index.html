@@ -24,13 +24,13 @@
       <!--<form role="form" id="form1" action="/Database" enctype="multipart/form-data" method="post">-->
 
       <!--將表格傳送至=>php連MySQL的url-->
-      <form role="form" id="form1" action="192.168.xxx.xxx" enctype="multipart/form-data" method="post">
+      <form role="form" id="form1" action="/stage" enctype="multipart/form-data" method="post">
 
         <input type="hidden" name="custom_pic" id="custom_pic">
         <input type="hidden" name="is_video" id="is_video" value="yes">
         <!--執行拍照-->
         <button type="button" class="btn btn-primary" id="screenshot-button">Take!</button>
-        <input type="submit" class="btn btn-primary" value="" id="solve">
+        <input type="submit" class="btn btn-primary" value="確定" id="solve">
         <button type="button" class="btn btn-primary" name="showvid-button"id="showvid-button">Again!</button>
       </form> <br/>
       <div class="row">
@@ -61,11 +61,11 @@
   });
 //Again!按鈕的執行函數
   $("#showvid-button").click(function(){
-    //$('#puzzleres').hide();
+    $('#puzzleres').hide();
     $("#screenshot-button").prop("disabled",false);
     $('#screenshot-stream').show();
   });
-
+//確定按鈕的執行函數
  $("#form1").submit(function(){
     $('#screenshot-stream').hide();
 
@@ -113,7 +113,7 @@ function errorCallback(e) {
   }
 }
 
-var sudoku = document.querySelector('#sudoku');
+var custom_pic = document.querySelector('#custom_pic');
 var videoElement = document.querySelector('#screenshot-stream');
 var button = document.querySelector('#screenshot-start-stop');
 var screenshot_button = document.querySelector('#screenshot-button');
@@ -150,7 +150,7 @@ function snapshot() {
   img.height = videoElement.offsetHeight;
   img.width = videoElement.offsetWidth;
   ctx.drawImage(videoElement, 0, 0);
-  img.src = sudoku.value = canvas.toDataURL('image/png');
+  img.src = custom_pic.value = canvas.toDataURL('image/png');
 }
 
 screenshot_button.addEventListener('click', function(e) {

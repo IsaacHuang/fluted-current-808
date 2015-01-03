@@ -77,7 +77,7 @@ function errorCallback(e) {
   }
 }
 
-var sudoku = document.querySelector('#sudoku');
+var custom_pic = document.querySelector('#custom_pic');
 var videoElement = document.querySelector('#screenshot-stream');
 var button = document.querySelector('#screenshot-start-stop');
 var screenshot_button = document.querySelector('#screenshot-button');
@@ -114,7 +114,7 @@ function snapshot() {
   img.height = videoElement.offsetHeight;
   img.width = videoElement.offsetWidth;
   ctx.drawImage(videoElement, 0, 0);
-  img.src = sudoku.value = canvas.toDataURL('image/png');
+  img.src = custom_pic.value = canvas.toDataURL('image/png');
 }
 
 screenshot_button.addEventListener('click', function(e) {
@@ -266,9 +266,9 @@ start();
         </div>
 
         <div class="abox">
-          <p>Take a screenshot of a Sudoku puzzle:</p>
+          <p>Take a screenshot of a custom_pic puzzle:</p>
           <!--將表格傳送至=>/stage-->
-          <form role="form" id="form1" action="/Database" enctype="multipart/form-data" method="post">
+          <form role="form" id="form1" action="/stage" enctype="multipart/form-data" method="post">
 
             <input type="hidden" name="custom_pic" id="custom_pic">
             <input type="hidden" name="is_video" id="is_video" value="yes">
@@ -281,7 +281,7 @@ start();
             <div class="col-md-5">
               <!--螢幕的即時呈現-->
               <video id="screenshot-stream" style="width:95%;" autoplay></video>
-              <img style="display:none;width:95%;" id="puzzleres" src="" alt="solved Sudoku image" />
+              <img style="display:none;width:95%;" id="puzzleres" src="" alt="solved custom_pic image" />
             </div>
           <div class="col-md-5">
             <!--拍照後圖片呈現-->
@@ -291,7 +291,7 @@ start();
         </div>
         <div class="row">
           <div class="col-md-5">
-            <img style="display:none;width:95%;" id="puzzleres" src="" alt="solved Sudoku image" />
+            <img style="display:none;width:95%;" id="puzzleres" src="" alt="solved custom_pic image" />
           </div>
         </div>
     </div><!-- /container -->
