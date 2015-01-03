@@ -20,7 +20,6 @@ import json
 import logging
 import os
 import webapp2
-import MySQLdb
 import datastore_class
 
 from google.appengine.api import taskqueue
@@ -47,32 +46,10 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         """Display the index page."""
 
-        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
+        template = JINJA_ENVIRONMENT.get_template('templates/test_index.html')
         self.response.out.write(template.render({}))
 
-class UploadImage(webapp2.RequestHandler):#上傳圖片的class====>要重寫
-    """Handles requests to show a puzzle upload page, which supports upload of sudoku
-    image files."""
-
-    """顯示上傳頁面函數"""
-    def get(self):
-        """Display the puzzle upload page."""
-
-        template = JINJA_ENVIRONMENT.get_template('templates/upload.html')
-        self.response.out.write(template.render({}))
-
-"""儲存資料的class"""
-
-
-class Database(webapp2.RequestHandler):
-    try:
-        db=MySQLdb.connect("140.135.247.116:8889","SA_test","root","root")
-        print "Connection is successful !"
-    except:
-        print "db is Over T_T "
 
 APP = webapp2.WSGIApplication([
-    ('/', MainHandler),
-    ('/upload', UploadImage),
-    ('/db_con',Database)
+    ('/', MainHandler)
 ], debug=True)

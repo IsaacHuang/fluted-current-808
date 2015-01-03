@@ -21,13 +21,13 @@
     <div class="abox">
       <p>Take a screenshot of a Sudoku puzzle:</p>
       <!--將表格傳送至=>/stage-->
-      <form role="form" id="form1" action="/stage" enctype="multipart/form-data" method="post">
+      <form role="form" id="form1" action="/Database" enctype="multipart/form-data" method="post">
 
-        <input type="hidden" name="sudoku" id="sudoku">
+        <input type="hidden" name="custom_pic" id="custom_pic">
         <input type="hidden" name="is_video" id="is_video" value="yes">
         <!--執行拍照-->
         <button type="button" class="btn btn-primary" id="screenshot-button">Take!</button>
-        <input type="submit" class="btn btn-primary" value="Solve" id="solve">
+        <input type="submit" class="btn btn-primary" value="" id="solve">
         <button type="button" class="btn btn-primary" name="showvid-button"id="showvid-button">Again!</button>
       </form> <br/>
       <div class="row">
