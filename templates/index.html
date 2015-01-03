@@ -1,17 +1,7 @@
 {% extends "templates/base.html" %}
 {% block content %}
 
-      
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Capture and Solve</a></li>
-              <li><a href="/upload">Upload and Solve</a></li>
-              <li><a href="/db_con">databse test</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </div>
-
+<div class="jumbotron">
   <div class="content">
     <h2>OpenCV Example</h2>
       <div class='select'>
@@ -30,16 +20,16 @@
         <input type="hidden" name="is_video" id="is_video" value="yes">
         <!--執行拍照-->
         <button type="button" class="btn btn-primary" id="screenshot-button">Take!</button>
-        <input type="submit" class="btn btn-primary" value="確定" id="solve">
+        <input type="submit" class="btn btn-primary" value="確定" id="Oringinal">
         <button type="button" class="btn btn-primary" name="showvid-button"id="showvid-button">Again!</button>
       </form> <br/>
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-12">
           <!--螢幕的即時呈現-->
           <video id="screenshot-stream" style="width:95%;" autoplay></video>
           <img style="display:none;width:95%;" id="puzzleres" src="" alt="solved Sudoku image" />
         </div>
-        <div class="col-md-5">
+        <div class="col-md-12">
           <!--拍照後圖片呈現-->
           <img id="screenshot" style="width:95%;" src="">
           <canvas id="screenshot-canvas" style="width:95%;display:none;"></canvas>
@@ -47,11 +37,11 @@
         </div>
         <div class="row">
         <div class="col-md-5">
-          <img style="display:none;width:95%;" id="puzzleres" src="" alt="solved Sudoku image" />
+         <!-- <img style="display:none;width:95%;" id="puzzleres" src="" alt="solved Sudoku image" />-->
         </div>
       </div>
     </div>
-
+  </div>
 </div> <!-- end content -->
 <script>
 //Take!按鈕的執行函數
@@ -77,23 +67,23 @@
       async: false,
       success: function (data) {
         console.log(data);
-        var solved_url = data.solved_url;
+        var oringinal_url = data.oringinal_url;
       
-        if (solved_url) {
+        if (oringinal_url) {
         // check for results to show up
           setTimeout(function show_results() {
-            console.log("in setTimeout, checking " + solved_url);
+            console.log("in setTimeout, checking " + oringinal_url);
             var img = new Image();
             //圖片來源設定
             img.onload = function() {
-              $('#puzzleres').attr('src', solved_url);
+              $('#puzzleres').attr('src', oringinal_url);
               $('#puzzleres').show();
               $("#showvid-button").prop("disabled",false);
             };
             img.onerror = function() {
               setTimeout(show_results, 200);
             }
-            img.src = solved_url;
+            img.src = oringinal_url;
           }, 200);
         }
       },

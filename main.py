@@ -20,10 +20,7 @@ import json
 import logging
 import os
 import webapp2
-import datastore_class
-
-from google.appengine.api import taskqueue
-
+from google.appengine.ext import db
 
 
 
@@ -53,10 +50,10 @@ class TakePhoto(webapp2.RequestHandler):
 
     def get(self):
         """Display the puzzle upload page."""
-
+        
         template = JINJA_ENVIRONMENT.get_template('templates/upload.html')
         self.response.out.write(template.render({}))
-        
+
 APP = webapp2.WSGIApplication([
     ('/', MainHandler),('/stage',TakePhoto)
 ], debug=True)
