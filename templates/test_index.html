@@ -39,9 +39,13 @@
     var formData = new FormData($(this)[0]);
     $.ajax({
       url:$(this).attr("action"),
+      //要接收的網址
       type: 'POST',
+      //傳輸方式
       data: formData,
+      //資料內容
       async: false,
+      //同步
       success: function (data) {
         console.log(data);
         var solved_url = data.solved_url;

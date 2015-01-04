@@ -1,7 +1,18 @@
+.jumbotron{
+	vertical-align: center;
+	text-align: center;
+	float:center;
+	padding: 100px;
+	margin-left: 100px;
+}
+.content{
+	text-align: center;
+}
 .abox {
 	display: block;
-    padding: 4px;
+    padding: 100px;
     margin-bottom: 20px;
+    margin-left: 100px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
@@ -9,9 +20,16 @@
     color: #800;
 }
 body{
-	margin:100px;
+
+	margin:150px;
 	width:95%;
 }
 .container{
 	
+}
+h2{
+	padding: 100px;
+	margin-left: 100px;
+	text-align: center;
+	font-color:red;
 }

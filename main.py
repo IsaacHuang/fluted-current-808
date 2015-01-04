@@ -20,7 +20,9 @@ import json
 import logging
 import os
 import webapp2
+import urllib2
 from google.appengine.ext import db
+
 
 
 
@@ -49,9 +51,8 @@ class MainHandler(webapp2.RequestHandler):
 class TakePhoto(webapp2.RequestHandler):
 
     def get(self):
-        """Display the puzzle upload page."""
         
-        template = JINJA_ENVIRONMENT.get_template('templates/upload.html')
+        template = JINJA_ENVIRONMENT.get_template('templates/test_index.html')
         self.response.out.write(template.render({}))
 
 APP = webapp2.WSGIApplication([
