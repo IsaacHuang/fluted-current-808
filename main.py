@@ -123,5 +123,5 @@ class TakePhoto(webapp2.RequestHandler):
             self.response.write(resp)
 
 APP = webapp2.WSGIApplication([
-    ('/', MainHandler),('/stage',TakePhoto)
+    ('/', MainHandler),('/datastore',TakePhoto),('/share',ShareToFacebook)
 ], debug=True)
