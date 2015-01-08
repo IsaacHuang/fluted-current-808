@@ -34,12 +34,12 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'])
 
-def decode_if_needed(data):
+"""def decode_if_needed(data):
     if data.startswith('data') and 'base64' in data:
         # remove data URL prefixes
         data = data.split('base64,', 1)[1]
         data = base64.standard_b64decode(data)
-    return data
+    return data"""
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -56,7 +56,8 @@ class TakePhoto(webapp2.RequestHandler):
     def post(self):
         form=cgi.FieldStorage()
         custom_pic=form.getvalue('custom_pic','')
-
+        #存入datastore，順便轉成字串
+        
         self.response.out.write("Successful !")
         
 
