@@ -22,26 +22,28 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <!--Facebook API-->
     <script>
-    //FaceBook API jQuery//
+    //FaceBook API jQuery
     $(document).ready(function() {
+      
       $.ajaxSetup({ cache: true });
-       window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '815885811794965',
-        xfbml      : true,
-        version    : 'v2.0'
-      });
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '815885811794965',
+          xfbml      : true,
+          version    : 'v2.0'
+        });
       };
   
       (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "//connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     });
-    //FaceBook API jQuery end//
+    //FaceBook API jQuery end
     FB.init({
       appId: '815885811794965',
       status: true,
@@ -96,6 +98,40 @@
           }
         }
       );
+    }
+    //FaceBook移除貼文
+    function deleteWall(id) {
+      FB.api(id, 'delete', function(response) {
+        if (!response || response.error) {
+            document.getElementById('msg').innerHTML = '刪除訊息ID: ' + id + ' 時發生錯誤。' + response.error.message;
+            $('#msg').slideDown();
+        } else {
+            document.getElementById('msg').innerHTML = '訊息ID: ' + id + ' 已刪除';
+            $('#msg').slideDown();
+        }
+    });
+    //完整發佈至塗鴉牆
+    function postToWall(id) {
+      var args = {
+        method: 'feed',
+        name: 'Name : Facebook App',
+        message: 'Message : Facebook Post Test',
+        link: 'https://developers.facebook.com/docs/reference/dialogs/',
+        picture: 'http://www.fbrell.com/f8.jpg',
+        caption: 'Caption : Facebook Post Test',
+        description: 'Description : Facebook Post Test'
+      };
+      FB.api('/' + id + '/feed', 'post', args, onPostToWallCompleted);
+      document.getElementById('msg').innerHTML = "waiting...";
+    }
+    function onPostToWallCompleted(response) {
+      if (!response || response.error) {
+        document.getElementById('msg').innerHTML = 'Error occured: ' + response.error.message;
+        $('#msg').slideDown();
+      } else {
+        document.getElementById('msg').innerHTML = '發佈成功，訊息ID:' + response.id + "。<a href="\"javascript:deleteWall('"" response.id="">刪除此訊息</a>";
+        $('#msg').slideDown();
+      }
     }
 
     </script>

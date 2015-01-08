@@ -1,5 +1,11 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 /*標籤的css設定*/
 body{
-
+	margin: 0 auto;
 }
 /*class的css設定*/
