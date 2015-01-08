@@ -53,8 +53,8 @@ class MainHandler(webapp2.RequestHandler):
         self.response.out.write(template.render({}))
 
 class TakePhoto(webapp2.RequestHandler):
-    form=cgi.FieldStorage()
     def post(self):
+        form=cgi.FieldStorage()
         custom_pic=form.getvalue('custom_pic','')
 
         self.response.out.write("Successful !")
