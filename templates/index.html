@@ -9,7 +9,8 @@
     <meta name="author" content="">
 
     <title>中原大學六十週年校慶</title>
-
+    <!--自己的css-->
+    <link rel="stylesheet" href="templates/css/index.css">
     <!-- 最後編譯與最小化CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <!-- 選擇項主題樣式 -->
@@ -18,6 +19,86 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <!--Facebook API-->
+    <script>
+    //FaceBook API jQuery//
+    $(document).ready(function() {
+      $.ajaxSetup({ cache: true });
+       window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '815885811794965',
+        xfbml      : true,
+        version    : 'v2.0'
+      });
+      };
+  
+      (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    });
+    //FaceBook API jQuery end//
+    FB.init({
+      appId: '815885811794965',
+      status: true,
+      cookie: true,
+      xfbml: true,
+      channelURL: 'http://www.xxxxxxxx.com.tw/channel.html',
+      oauth: true
+    });
+    FB.getLoginStatus(function (response) {
+      if (response.status === 'connected') {       
+        var uid = response.authResponse.userID;
+        //var accessToken = response.authResponse.accessToken;
+        //accessToken 的功用可以看這裡 http://developers.facebook.com/docs/reference/api/">http://developers.facebook.com/docs/reference/api/
+        login_success(uid);
+      } else {
+        FB.login(function (response) {
+          if (response.authResponse) {
+            var uid = response.authResponse.userID;
+            var accessToken = response.authResponse.accessToken;
+            login_success(uid);
+          } else {
+            alert('登入失敗!');
+          }
+        }, {
+          scope: 'email,publish_stream'
+        });
+      }
+    });
+    function login_success(uid){
+      /*var body = '測試一下測試一下測試一下測試一下';
+      FB.api('/me/feed', 'post', { message: body }, function(response) {
+        if (!response || response.error) {
+          alert('Error occured');
+        } else {
+          alert('Post ID: ' + response.id);
+        }
+      }); */
+      FB.ui(
+        {
+          method: 'feed',
+          name: 'Facebook Dialogs',
+          link: 'http://www.suncolor.com.tw',
+          picture: 'http://fbrell.com/f8.jpg',
+          caption: '測試一下',
+          description: '測試兩下測試兩下測試兩下'
+        },
+        function(response) {
+          if (response && response.post_id) {
+            alert('Post was published.');
+          } else {
+            alert('Post was not published.');
+          }
+        }
+      );
+    }
+
+    </script>
   </head>
    <body>
     <div class="container">
