@@ -8,4 +8,14 @@
 body{
 	margin: 0 auto;
 }
+footer{
+	position: fixed;
+}
 /*class的css設定*/
+
+
+/*id的css設定*/
+#screenshot-canvas{
+	display:none;
+	width:95%;
+}
