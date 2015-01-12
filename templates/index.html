@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--{%block content%}-->
   <head>
     <meta charset="utf-8">
     <!--IE兼容-->
@@ -10,68 +11,81 @@
 
     <title>中原大學六十週年校慶</title>
     <!--自己的css-->
-    <link rel="stylesheet" href="templates/css/index.css">
+    <link rel="stylesheet" href="css/index.css">
     <!-- 最後編譯與最小化CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
     <!-- 選擇項主題樣式 -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
     <!-- 最後編譯與最小化JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="templates/js/waypoints.min.js"></script>
+    <script src="templates/js/bootstrap.min.js"></script>
+    <script src="templates/js/scripts.js"></script>
+    <script src="templates/js/jquery.flexslider.js"></script>
+    <script src="templates/js/modernizr.js"></script>
+    <!--Facebook API-->
+    <!--本機的css-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/flexslider.css" rel="stylesheet" >
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/queries.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
     <!--Facebook API-->
     <script>
-    //FaceBook API jQuery
-    $(document).ready(function() {
+      //FaceBook API jQuery
+      $(document).ready(function() {
       
-      $.ajaxSetup({ cache: true });
+        $.ajaxSetup({ cache: true });
 
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '815885811794965',
-          xfbml      : true,
-          version    : 'v2.0'
-        });
-      };
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '815885811794965',
+            xfbml      : true,
+            version    : 'v2.0'
+          });
+        };
   
-      (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
+        $(function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-    });
-    //FaceBook API jQuery end
-    FB.init({
-      appId: '815885811794965',
-      status: true,
-      cookie: true,
-      xfbml: true,
-      channelURL: 'http://www.xxxxxxxx.com.tw/channel.html',
-      oauth: true
-    });
-    FB.getLoginStatus(function (response) {
-      if (response.status === 'connected') {       
-        var uid = response.authResponse.userID;
-        //var accessToken = response.authResponse.accessToken;
-        //accessToken 的功用可以看這裡 http://developers.facebook.com/docs/reference/api/">http://developers.facebook.com/docs/reference/api/
-        login_success(uid);
-      } else {
-        FB.login(function (response) {
-          if (response.authResponse) {
-            var uid = response.authResponse.userID;
-            var accessToken = response.authResponse.accessToken;
-            login_success(uid);
-          } else {
-            alert('登入失敗!');
-          }
-        }, {
-          scope: 'email,publish_stream'
+      });
+      //FaceBook API jQuery end
+      FB.init({
+        appId: '815885811794965',
+        status: true,
+        cookie: true,
+        xfbml: true,
+        channelURL: 'http://www.xxxxxxxx.com.tw/channel.html',
+        oauth: true
+      });
+      FB.getLoginStatus(function (response) {
+        if (response.status === 'connected') {       
+          var uid = response.authResponse.userID;
+          //var accessToken = response.authResponse.accessToken;
+          //accessToken 的功用可以看這裡 http://developers.facebook.com/docs/reference/api/">http://developers.facebook.com/docs/reference/api/
+          login_success(uid);
+        } else {
+          FB.login(function (response) {
+            if (response.authResponse) {
+              var uid = response.authResponse.userID;
+              var accessToken = response.authResponse.accessToken;
+              login_success(uid);
+            } else {
+              alert('登入失敗!');
+            }
+          }, {
+            scope: 'email,publish_stream'
         });
-      }
-    });
+      });
     function login_success(uid){
       /*var body = '測試一下測試一下測試一下測試一下';
       FB.api('/me/feed', 'post', { message: body }, function(response) {
@@ -137,67 +151,164 @@
     </script>
   </head>
    <body>
-    <div class="container">
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">回憶中原，回到中原</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">回憶中原，回到中原</a>
-          </div>
-        </nav>
-    <div class="jumbotron">
-    <!--介面開始-->
-    <div id='interface'>
-    </div>
-    <!--介面結束-->
-    <!--背景照選擇開始-->
-    <div id='bgchose'>
-    </div>
-    <!--背景照選擇結束-->
-    <!--拍照階段-->
-        <h2>拍照囉～～</h2>
-        <div class='select'>
-            <label for='videoSource'>Video source:&nbsp;</label>
-            <select id='videoSource'></select>
-        </div>
-        <div class="abox">
-            <p>準備好後，請記得微笑！</p>
-
-            <!--將表格傳送至=>php Server的url-->
-            <form role="form" id="form1" action="/datastore" enctype="multipart/form-data" method="post">
-              <!--拍照後data的存放地點-->
-              <input type="hidden" name="custom_pic" id="custom_pic">
-              <!--<input type="hidden" name="is_video" id="is_video" value="yes">-->
-              <!--執行拍照-->
-              <button type="button" class="btn btn-primary" id="screenshot-button">Take!</button>
-              <input type="submit" class="btn btn-primary" value="確定" id="Oringinal">
-              <button type="button" class="btn btn-primary" name="showvid-button"id="showvid-button">Again!</button>
-            </form>  <br/>
+    <header>
+      <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container-fluid">
             <div class="row">
-              <div class="col-md-12" id='screen'>
-                  <!--螢幕的即時呈現-->
-                  <video id="videoscreen" style="width:95%;" autoplay></video>
-                  <img id="screen-stream" src="" alt="" />
-                  <!--拍照後圖片呈現-->
-                  <img id="screenshot" style="width:95%;" src="">
-                  <canvas id="screenshot-canvas"></canvas>
+              <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+                <nav class="pull">
+                  <ul class="top-nav">
+                    <li><a href="#intro">介紹 <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                    <li><a href="#features">選擇場景<span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                    <li><a href="#responsive">拍張照吧 <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                    <li><a href="#hero">合成照片 <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                    <li><a href="#hero">關於我們<span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                 
+                  </ul>
+                </nav>
               </div>
             </div>
-        </div>
+          </div>
+        </nav>
+        <section class="hero" id="hero">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 text-right navicon">
+                <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2 text-center inner">
+                <h1 class="animated fadeInDown">回到過去 回憶中原</h1>
+                <h3 class="animated fadeInUp delay-05s">CYCU Find your memory</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3 text-center">
+                <a href="#intro" class="learn-more-btn">Start</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </header>
+        <!--介面開始-->
+        <section class="intro text-center section-padding" id="intro">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2 wp1">
+                <h1><b>介紹</b></h1>
+                <h1 class="arrow"></h1>
+                  <p>介紹想回味從前的大學時光嗎？<br>
+                  想重返中原大學美麗的往昔景致嗎？<br>快乘上這部時光機跟我們一起探索過去吧！<br>本系統是中原大學60周年校慶特別活動<br>
+                  可選擇中原老校園當背景照相<br>
+                  於臉書分享出去即可參加抽獎唷！<br>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--介面結束-->
+        <!--背景照選擇開始-->
+        <section class="swag text-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <h1>選張懷念的校園場景吧!</h1><br>
+                <a href="#responsive" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="text-center" id="responsive">
+          <div class="container-fluid nopadding responsive-services">
+            <div class="wrapper">
+              <div class="fluid-white"></div>
+            </div>
+            <div class="container designs">
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                  <div id="servicesSlider">
+                    <ul class="slides">
+                      <li>
+                        <h1 class="arrow">中原大草皮</h1>
+                        <div class="iphone">
+                          <div class="wp3"></div>
+                        </div>
+                      </li>
+                      <li>
+                        <h1 class="arrow">中原教學大樓</h1>  
+                      </li>
+                      <li>
+                        <h1 class="arrow">中原資館樓</h1>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#abc" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+        </section>
+        <!--背景照選擇結束-->
+        <!--拍照階段-->
+        <section class="swag text-center" id = "abc">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <h1>來拍照吧!<br><span>做出 <em>獨一無二</em> 的動作</span></h1>
+                <a href="#portfolio" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="portfolio text-center section-padding" id="portfolio">
+          <div class="container">
+            <div class="row">
+              <div id="portfolioSlider">
+                <h1>拍照囉～～</h1>
+                <div class='select'>
+                  <label for='videoSource'>Video source:&nbsp;</label>
+                  <select id='videoSource'></select>
+                </div>
+                <div class="abox">
+                  <p>準備好後，請記得微笑！</p>
+                  <!--將表格傳送至=>php Server的url-->
+                  <form role="form" id="form1" action="/datastore" enctype="multipart/form-data" method="post">
+                    <!--拍照後data的存放地點-->
+                    <input type="hidden" name="custom_pic" id="custom_pic">
+                    <!--<input type="hidden" name="is_video" id="is_video" value="yes">-->
+                    <!--執行拍照-->
+                    <button type="button" class="btn btn-primary" id="screenshot-button">Take!</button>
+                    <input type="submit" class="btn btn-primary" value="確定" id="Oringinal">
+                    <button type="button" class="btn btn-primary" name="showvid-button"id="showvid-button">Again!</button>
+                  </form>  <br/>
+                    <div class="row">
+                      <div class="col-md-12" id='screen'>
+                        <!--螢幕的即時呈現-->
+                        <video id="videoscreen" style="width:95%;" autoplay></video>
+                        <img id="screen-stream" src="" alt="" />
+                        <!--拍照後圖片呈現-->
+                        <img id="screenshot" style="width:95%;" src="">
+                        <canvas id="screenshot-canvas"></canvas>
+                      </div>
+                    </div>
+                </div>
+                <!--拍照階段結束-->
+              </div>
+            </div>
+          </div>
+        </section>
+        
         <!--拍照階段結束-->
         <!--合成圖片開始-->
-        <div id='editor'>
-        </div>
+        
         <!--合成圖片結束-->
         <!--發布FaceBook-->
-        <div id='publish'>
-        </div>
+        
         <!--發布FaceBook結束-->
-    </div><!--end jumbotron-->
+    
     <script>
       //控制按鈕的顯示方式
       $(document).ready(function(){
@@ -326,10 +437,15 @@
 
       start();
     </script>
-  </div> <!-- end container-->
   <footer>
-    如有問題，請洽中原大學資管系。
-    Copyright@2014
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 credit">
+          <a>&copy;  如有問題，請洽中原大學資管系。Copyright@2015   </a> <a href="http://www.im.cycu.edu.tw/">   CYCUIM   </a>
+        </div>
+      </div>
+    </div>
   </footer>
   </body>
+<!--{%endblock%}-->
 </html>
