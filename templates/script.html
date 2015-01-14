@@ -1,0 +1,254 @@
+{%extends "templates/css.html"%}
+{%block script%}
+<!-- 最後編譯與最小化JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/waypoints.min.js"></script>
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <script src="js/scripts.js"></script>
+    <!--<script src="js/jquery.flexslider.js"></script>-->
+    <script src="js/modernizr.js"></script>
+    <!--Facebook API-->
+    <script>
+      //FaceBook API jQuery
+      $(document).ready(function() {
+      
+        $.ajaxSetup({ cache: true });
+
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '815885811794965',
+            xfbml      : true,
+            version    : 'v2.0'
+          });
+        };
+  
+        $(function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      });
+      //FaceBook API jQuery end
+      FB.init({
+        appId: '815885811794965',
+        status: true,
+        cookie: true,
+        xfbml: true,
+        channelURL: 'http://www.xxxxxxxx.com.tw/channel.html',
+        oauth: true
+      });
+      FB.getLoginStatus(function (response) {
+        if (response.status === 'connected') {       
+          var uid = response.authResponse.userID;
+          //var accessToken = response.authResponse.accessToken;
+          //accessToken 的功用可以看這裡 http://developers.facebook.com/docs/reference/api/">http://developers.facebook.com/docs/reference/api/
+          login_success(uid);
+        } else {
+          FB.login(function (response) {
+            if (response.authResponse) {
+              var uid = response.authResponse.userID;
+              var accessToken = response.authResponse.accessToken;
+              login_success(uid);
+            } else {
+              alert('登入失敗!');
+            }
+          }, {
+            scope: 'email,publish_stream'
+        });
+      });
+    function login_success(uid){
+      /*var body = '測試一下測試一下測試一下測試一下';
+      FB.api('/me/feed', 'post', { message: body }, function(response) {
+        if (!response || response.error) {
+          alert('Error occured');
+        } else {
+          alert('Post ID: ' + response.id);
+        }
+      }); */
+      FB.ui(
+        {
+          method: 'feed',
+          name: 'Facebook Dialogs',
+          link: 'http://www.suncolor.com.tw',
+          picture: 'http://fbrell.com/f8.jpg',
+          caption: '測試一下',
+          description: '測試兩下測試兩下測試兩下'
+        },
+        function(response) {
+          if (response && response.post_id) {
+            alert('Post was published.');
+          } else {
+            alert('Post was not published.');
+          }
+        }
+      );
+    }
+    //FaceBook移除貼文
+    function deleteWall(id) {
+      FB.api(id, 'delete', function(response) {
+        if (!response || response.error) {
+            document.getElementById('msg').innerHTML = '刪除訊息ID: ' + id + ' 時發生錯誤。' + response.error.message;
+            $('#msg').slideDown();
+        } else {
+            document.getElementById('msg').innerHTML = '訊息ID: ' + id + ' 已刪除';
+            $('#msg').slideDown();
+        }
+    });
+    //完整發佈至塗鴉牆
+    function postToWall(id) {
+      var args = {
+        method: 'feed',
+        name: 'Name : Facebook App',
+        message: 'Message : Facebook Post Test',
+        link: 'https://developers.facebook.com/docs/reference/dialogs/',
+        picture: 'http://www.fbrell.com/f8.jpg',
+        caption: 'Caption : Facebook Post Test',
+        description: 'Description : Facebook Post Test'
+      };
+      FB.api('/' + id + '/feed', 'post', args, onPostToWallCompleted);
+      document.getElementById('msg').innerHTML = "waiting...";
+    }
+    function onPostToWallCompleted(response) {
+      if (!response || response.error) {
+        document.getElementById('msg').innerHTML = 'Error occured: ' + response.error.message;
+        $('#msg').slideDown();
+      } else {
+        document.getElementById('msg').innerHTML = '發佈成功，訊息ID:' + response.id + "。<a href="\"javascript:deleteWall('"" response.id="">刪除此訊息</a>";
+        $('#msg').slideDown();
+      }
+    }
+
+//控制按鈕的顯示方式
+      $(document).ready(function(){
+        $("#screenshot-button").click(function(){
+          $("#videoscreen").hide();
+          $("#screenshot").show();
+        });
+        $("#showvid-button").click(function(){
+          $("#videoscreen").show();
+          $("#screenshot").show();
+        })
+      });
+      //Again!按鈕的執行函數
+        $("#showvid-button").click(
+          function(){
+            $("#screenshot-button").prop("disabled",false);
+          });
+      //取得css設定
+      var custom_pic = document.querySelector('#custom_pic');
+      var videoElement = document.querySelector('#videoscreen');
+      var button = document.querySelector('#screenshot-start-stop');
+      var screenshot_button = document.querySelector('#screenshot-button');
+      var canvas = document.querySelector('#screenshot-canvas');
+      var img = document.querySelector('#screenshot');
+      var ctx = canvas.getContext('2d');
+      var localMediaStream = null;
+      var videoSelect = document.querySelector("select#videoSource");
+
+      //設定呈現大小
+      function sizeCanvas() {
+          // video.onloadedmetadata not firing in Chrome so we have to hack.
+          // See crbug.com/110938.
+          setTimeout(function() {
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            img.height = videoElement.offsetHeight;
+            img.width = videoElement.offsetWidth;
+          }, 1000);
+      }
+
+      //執行拍照的函數
+      function snapshot() {
+          console.log("in snapshot");
+          var canvas = document.createElement('canvas');
+          var ctx = canvas.getContext('2d');
+          // make canvas size equal to the video source
+          canvas.width = videoElement.videoWidth;
+          canvas.height = videoElement.videoHeight;
+          // for some reason img height is smaller than the video
+          // but I think it's unrelated problem. this adjustment is
+          // only for a visual aspect as the canvas data URL won't change.
+          img.height = videoElement.offsetHeight;
+          img.width = videoElement.offsetWidth;
+          ctx.drawImage(videoElement, 0, 0);
+          img.src = custom_pic.value = canvas.toDataURL('image/png');
+      }
+
+      //按下拍照鍵
+      screenshot_button.addEventListener('click', function(e) {
+          if (localMediaStream) {
+            $(this).prop("disabled",true);
+            $('#screen-stream').hide();
+            $('#screenshot').show();
+            snapshot();
+            return;
+          }
+      }, false);
+
+      //瀏覽器取得媒體方式
+      navigator.getUserMedia = navigator.getUserMedia ||
+        navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+      //鏡頭擷取
+      function gotSources(sourceInfos) {
+          for (var i = 0; i != sourceInfos.length; ++i) {
+            var sourceInfo = sourceInfos[i];
+            var option = document.createElement("option");
+            option.value = sourceInfo.id;
+            if (sourceInfo.kind === 'audio') {
+            }
+            else if (sourceInfo.kind === 'video') {
+                option.text = sourceInfo.label || 'camera ' + (videoSelect.length + 1);
+                videoSelect.appendChild(option);
+            } else {
+                console.log('Some other kind of source: ', sourceInfo);
+            }
+          }
+      }
+
+      if (typeof MediaStreamTrack === 'undefined'){
+          alert('This browser does not support MediaStreamTrack.');
+      } else {
+          MediaStreamTrack.getSources(gotSources);
+      }
+
+
+      function successCallback(stream) {
+          window.stream = stream; // make stream available to console
+          videoElement.src = window.URL.createObjectURL(stream);
+          localMediaStream = stream;
+          sizeCanvas();
+          videoElement.play();
+      }
+
+      //錯誤回傳
+      function errorCallback(error){
+          console.log("navigator.getUserMedia error: ", error);
+      }
+
+      //開始函數
+      function start(){
+          if (!!window.stream) {
+            videoElement.src = null;
+            window.stream.stop();
+          }
+          var videoSource = videoSelect.value;
+          var constraints = {
+            video: {
+                optional: [{sourceId: videoSource}]
+            }
+          };
+          navigator.getUserMedia(constraints, successCallback, errorCallback);
+      }
+
+      videoSelect.onchange = start;
+
+      start();
+    </script>
+{%endblock script%}

@@ -11,8 +11,6 @@ handlers:
 
 - url: /.*
   script: main.APP
-- url: css/index.css
-  script: templates/css/index.css
 
 libraries:
 - name: webapp2

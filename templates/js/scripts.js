@@ -161,13 +161,13 @@ $("#showvid-button").click(
   //取得css設定
   var custom_pic = document.querySelector('#custom_pic');
   var videoElement = document.querySelector('#videoscreen');
-              var button = document.querySelector('#screenshot-start-stop');
-              var screenshot_button = document.querySelector('#screenshot-button');
-              var canvas = document.querySelector('#screenshot-canvas');
-              var img = document.querySelector('#screenshot');
-              var ctx = canvas.getContext('2d');
-              var localMediaStream = null;
-              var videoSelect = document.querySelector("select#videoSource");
+  var button = document.querySelector('#screenshot-start-stop');
+  var screenshot_button = document.querySelector('#screenshot-button');
+  var canvas = document.querySelector('#screenshot-canvas');
+  var img = document.querySelector('#screenshot');
+  var ctx = canvas.getContext('2d');
+  var localMediaStream = null;
+  var videoSelect = document.querySelector("select#videoSource");
 
               //設定呈現大小
               function sizeCanvas() {

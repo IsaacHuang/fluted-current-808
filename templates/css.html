@@ -1,0 +1,39 @@
+{%extends "templates/head.html"%}
+{%block css%}
+	* {
+  		-webkit-box-sizing: border-box;
+     	-moz-box-sizing: border-box;
+        	  box-sizing: border-box;
+	}
+
+	/*標籤的css設定*/
+	html {
+  		font-family: sans-serif;
+  		-webkit-text-size-adjust: 100%;
+      		-ms-text-size-adjust: 100%;
+	}
+	body{
+		margin: 0 auto;
+		background-color: red
+	}
+	a {
+  		background: transparent;
+	}
+	footer{
+		position: fixed;
+	}
+	/*class的css設定*/
+	.animated {
+  		-webkit-animation-duration: 1s;
+  			animation-duration: 1s;
+  		-webkit-animation-fill-mode: both;
+  		animation-fill-mode: both;
+	}
+
+
+	/*id的css設定*/
+	#screenshot-canvas{
+		display:none;
+		width:95%;
+	}
+{%endblock css%}

@@ -1,5 +1,4 @@
-{%extends "templates/head.html"%}
-{%block css%}
+
   * {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
@@ -35,6 +34,3 @@
 	 display:none;
 	 width:95%;
   }
-  {%block css_animate%}
-  {%endblock css_animate%}
-{%endblock css%}

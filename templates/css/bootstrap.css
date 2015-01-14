@@ -1,3 +1,5 @@
+{%extends "templates/index.html"%}
+{%block css%}
 /*!
  * Bootstrap v3.1.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -5783,3 +5785,5 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+{{super()}}
+{%endblock%}
