@@ -11,6 +11,10 @@ handlers:
 
 - url: /.*
   script: main.APP
+  
+- url: /2.jpg
+  static_files: templates/img/2.jpg
+  upload: templates/img/2.jpg
 
 libraries:
 - name: webapp2

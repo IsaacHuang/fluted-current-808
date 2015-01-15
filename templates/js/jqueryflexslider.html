@@ -147,7 +147,7 @@
         // FADE&&SMOOTHHEIGHT || SLIDE:
         if (!fade || (fade && slider.vars.smoothHeight)) $(window).bind("resize orientationchange focus", methods.resize);
 
-        slider.find("img").attr("draggable", "false");
+        slider.find("templates/img").attr("draggable", "false");
 
         // API: start() Callback
         setTimeout(function(){
