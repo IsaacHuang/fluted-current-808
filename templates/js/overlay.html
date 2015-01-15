@@ -1,3 +1,6 @@
+{%extends "templates/js/waypoints.html"%}
+{%block overlay%}
+<script>
 $(document).ready(function() {
   if (Modernizr.touch) {
     // show the close overlay button
@@ -29,3 +32,5 @@ $(document).ready(function() {
     });
   }
 });
+</script>
+{%endblock overlay%}
