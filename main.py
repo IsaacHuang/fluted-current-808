@@ -57,8 +57,8 @@ class TakePhoto(webapp2.RequestHandler):
         form=cgi.FieldStorage()
         custom_pic=form.getvalue('custom_pic','').encode("base64")
         #存入datastore，順便轉成字串
-        template = JINJA_ENVIRONMENT.get_template('templates/test.html')
-        self.response.out.write(template.render({custom_pic}))        
+        #template = JINJA_ENVIRONMENT.get_template()
+        #self.response.out.write(template.render({custom_pic}))        
 
 APP = webapp2.WSGIApplication([
     ('/', MainHandler),('/datastore',TakePhoto)
