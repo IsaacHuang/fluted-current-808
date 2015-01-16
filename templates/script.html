@@ -9,54 +9,71 @@
     <script src="https://sites.google.com/site/cycufindyourmemory/config/pagetemplates/js/jquery.flexslider.js"></script>
     <script>
 //FaceBook API jQuery
-      $(document).ready(function() {
-      
-        $.ajaxSetup({ cache: true });
+       window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '818779268172286',
+      xfbml      : true,
+      version    : 'v2.2'
+    });
 
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '815885811794965',
-            xfbml      : true,
-            version    : 'v2.0'
-          });
-        };
-  
-        $(function(d, s, id){
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) {return;}
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-      });
+    // ADD ADDITIONAL FACEBOOK CODE HERE
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
       //FaceBook API jQuery end
-      FB.init({
-        appId: '815885811794965',
-        status: true,
-        cookie: true,
-        xfbml: true,
-        channelURL: 'http://www.xxxxxxxx.com.tw/channel.html',
-        oauth: true
-      });
-      FB.getLoginStatus(function (response) {
-        if (response.status === 'connected') {       
-          var uid = response.authResponse.userID;
-          //var accessToken = response.authResponse.accessToken;
-          //accessToken 的功用可以看這裡 http://developers.facebook.com/docs/reference/api/">http://developers.facebook.com/docs/reference/api/
-          login_success(uid);
-        } else {
-          FB.login(function (response) {
-            if (response.authResponse) {
-              var uid = response.authResponse.userID;
-              var accessToken = response.authResponse.accessToken;
-              login_success(uid);
-            } else {
-              alert('登入失敗!');
-            }
-          }, {
-            scope: 'email,publish_stream'
-        });
-    function login_success(uid){
+      //FB initial
+      function onLogin(response) {
+  if (response.status == 'connected') {
+    FB.api('/me?fields=first_name', function(data) {
+      var welcomeBlock = document.getElementById('fb-welcome');
+      welcomeBlock.innerHTML = 'Hello, ' + data.first_name + '!';
+    });
+  }
+}
+
+FB.getLoginStatus(function(response) {
+  // Check login status on load, and if the user is
+  // already logged in, go directly to the welcome message.
+  if (response.status == 'connected') {
+    onLogin(response);
+  } else {
+    // Otherwise, show Login dialog first.
+    FB.login(function(response) {
+      onLogin(response);
+    }, {scope: 'user_friends, email'});
+  }
+});
+//FB initial end
+//FB Login
+function parse_signed_request($signed_request) {
+  list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
+
+  $secret = "appsecret"; // Use your app secret here
+
+  // decode the data
+  $sig = base64_url_decode($encoded_sig);
+  $data = json_decode(base64_url_decode($payload), true);
+
+  // confirm the signature
+  $expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
+  if ($sig !== $expected_sig) {
+    error_log('Bad Signed JSON signature!');
+    return null;
+  }
+
+  return $data;
+}
+
+function base64_url_decode($input) {
+  return base64_decode(strtr($input, '-_', '+/'));
+}
+    /*function login_success(uid){
       /*var body = '測試一下測試一下測試一下測試一下';
       FB.api('/me/feed', 'post', { message: body }, function(response) {
         if (!response || response.error) {
@@ -64,7 +81,7 @@
         } else {
           alert('Post ID: ' + response.id);
         }
-      }); */
+      });
       FB.ui(
         {
           method: 'feed',
@@ -116,6 +133,6 @@
         document.getElementById('msg').innerHTML = "發佈成功，訊息ID:" + response.id + "。<a href='javascript:deleteWall(response.id="">刪除此訊息</a>)'"
         $('#msg').slideDown();
       }
-    }
+    }*/
 </script>
 {%endblock script%}
