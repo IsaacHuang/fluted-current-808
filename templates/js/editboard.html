@@ -1,0 +1,26 @@
+{%%}
+{%%}
+<script>
+//取得css設定
+      var custom_pic = document.querySelector('#custom_pic');
+      var videoElement = document.querySelector('#videoscreen');
+      var button = document.querySelector('#screenshot-start-stop');
+      var screenshot_button = document.querySelector('#screenshot-button');
+      var canvas = document.querySelector('#screenshot-canvas');
+      var img = document.querySelector('#screenshot');
+      var ctx = canvas.getContext('2d');
+      var localMediaStream = null;
+      var videoSelect = document.querySelector("select#videoSource");
+
+      //設定呈現大小
+      function sizeCanvas() {
+          // video.onloadedmetadata not firing in Chrome so we have to hack.
+          // See crbug.com/110938.
+          setTimeout(function() {
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            img.height = videoElement.offsetHeight;
+            img.width = videoElement.offsetWidth;
+          }, 1000);
+      }
+</script>        
