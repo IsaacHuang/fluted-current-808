@@ -54,12 +54,12 @@ class MainHandler(webapp2.RequestHandler):
 
 class TakePhoto(webapp2.RequestHandler):
     def post(self):
-        form=cgi.FieldStorage()
-        custom_pic=form.getvalue('custom_pic','').encode("base64")
+        #form=cgi.FieldStorage()
+        #custom_pic=form.getvalue('custom_pic','').encode("base64")
         #存入datastore，順便轉成字串
-        #template = JINJA_ENVIRONMENT.get_template()
-        #self.response.out.write(template.render({custom_pic}))        
+        template = JINJA_ENVIRONMENT.get_template('templates/edit.html')
+        self.response.out.write(template.render({}))        
 
 APP = webapp2.WSGIApplication([
-    ('/', MainHandler),('/datastore',TakePhoto)
+    ('/', MainHandler),('/facebook',TakePhoto)
 ], debug=True)

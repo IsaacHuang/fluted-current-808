@@ -1,24 +1,6 @@
 {%extends "templates/footer.html"%}
 {%block opencv%}
 <script>
-      
-
-//控制按鈕的顯示方式
-      $(document).ready(function(){
-        $("#screenshot-button").click(function(){
-          $("#videoscreen").hide();
-          $("#screenshot").show();
-        });
-        $("#showvid-button").click(function(){
-          $("#videoscreen").show();
-          $("#screenshot").show();
-        })
-      });
-      //Again!按鈕的執行函數
-        $("#showvid-button").click(
-          function(){
-            $("#screenshot-button").prop("disabled",false);
-          });
       //取得css設定
       var custom_pic = document.querySelector('#custom_pic');
       var videoElement = document.querySelector('#videoscreen');
