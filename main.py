@@ -34,6 +34,8 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'])
 
+
+
 """def decode_if_needed(data):
     if data.startswith('data') and 'base64' in data:
         # remove data URL prefixes
