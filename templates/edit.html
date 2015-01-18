@@ -1,6 +1,11 @@
-{%extends "templates/footer.html"%}
-{%block body%}
+{%block edit%}
 
 <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
 
-{%endblock body%}
+<div class="row">
+	<div class="col-md-12" id='screen'>
+		<img id="screenshot" style="width:95%;" src="">
+		<canvas id="screenshot-canvas"></canvas>
+	</div>
+</div>
+{%endblock edit%}

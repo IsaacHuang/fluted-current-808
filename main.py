@@ -51,7 +51,11 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         """Display the index page."""
 
+        
+        #self.response.headers['Content-Type'] = 'text/csv'
+        #self.response.out.write(self.dump_csv())  
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
+        self.response.headers.add_header("Access-Control-Allow-Origin", "*")
         self.response.out.write(template.render({}))
 
 class TakePhoto(webapp2.RequestHandler):
@@ -60,7 +64,8 @@ class TakePhoto(webapp2.RequestHandler):
         #custom_pic=form.getvalue('custom_pic','').encode("base64")
         #存入datastore，順便轉成字串
         template = JINJA_ENVIRONMENT.get_template('templates/edit.html')
-        self.response.out.write(template.render({}))        
+        self.response.out.write(template.render({}))   
+
 
 APP = webapp2.WSGIApplication([
     ('/', MainHandler),('/facebook',TakePhoto)
