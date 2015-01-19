@@ -12,25 +12,6 @@ handlers:
 - url: /.*
   script: main.APP
 
-- url: /fonts
-  static_dir: fonts
-
-- url: /fonts/fontawesome-webfont-eot\.eot
-  static_files: /fonts/fontawesome-webfont-eot.eot
-  upload: fontawesome-webfont-eot\.eot
-
-- url: /fonts/fontawesome-webfont-svg\.svg
-  static_files: fontawesome-webfont-svg.svg
-  upload: fontawesome-webfont-svg\.svg
-
-- url: /fonts/fontawesome-webfont-ttf\.ttf
-  static_files: fontawesome-webfont-ttf.ttf
-  upload: fontawesome-webfont-ttf\.ttf
-
-- url: /fonts/fontawesome-webfont-woff\.woff
-  static_files: fontawesome-webfont-woff.woff
-  upload: fontawesome-webfont-woff\.woff
-
 
 libraries:
 - name: webapp2
