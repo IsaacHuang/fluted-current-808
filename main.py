@@ -36,12 +36,12 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 
 
-"""def decode_if_needed(data):
+def decode_if_needed(data):
     if data.startswith('data') and 'base64' in data:
         # remove data URL prefixes
         data = data.split('base64,', 1)[1]
         data = base64.standard_b64decode(data)
-    return data"""
+    return data
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -60,13 +60,21 @@ class MainHandler(webapp2.RequestHandler):
 
 class TakePhoto(webapp2.RequestHandler):
     def post(self):
-        #form=cgi.FieldStorage()
-        #custom_pic=form.getvalue('custom_pic','').encode("base64")
+        form=cgi.FieldStorage()
+        custom_pic=form.getvalue('custom_pic','')
+        photo=decode_if_needed(custom_pic)
+        #print "<img src=%s>"%photo
+        #print "<script>document.cookie='image= %s';document.location.href='/templates/edit.html'</script>"% custom_pic.encode('base64')
         #存入datastore，順便轉成字串
+        template = JINJA_ENVIRONMENT.get_template('templates/test.html')
+        self.response.out.write(template.render({photo}))  
+
+class EditBoard(webapp2.RequestHandler):
+    def post(self):
         template = JINJA_ENVIRONMENT.get_template('templates/edit.html')
         self.response.out.write(template.render({}))   
 
 
 APP = webapp2.WSGIApplication([
-    ('/', MainHandler),('/facebook',TakePhoto)
+    ('/', MainHandler),('/facebook',TakePhoto),('/EditBoard',EditBoard)
 ], debug=True)
