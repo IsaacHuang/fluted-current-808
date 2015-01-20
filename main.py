@@ -51,25 +51,11 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         """Display the index page."""
 
-        
-        #self.response.headers['Content-Type'] = 'text/csv'
-        #self.response.out.write(self.dump_csv())  
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
-        self.response.headers.add_header("Access-Control-Allow-Origin", "*")
         self.response.out.write(template.render({}))
-
-class TakePhoto(webapp2.RequestHandler):
-    def post(self):
-        form=cgi.FieldStorage()
-        custom_pic=form.getvalue('custom_pic','')
-        #存入datastore，順便轉成字串
-        str photo=custom_pic
-
-        template = JINJA_ENVIRONMENT.get_template('templates/edit.html')
-        self.response.out.write(template.render({"photo":"%s"}))%photo
 
 
 
 APP = webapp2.WSGIApplication([
-    ('/', MainHandler),('/facebook',TakePhoto)
+    ('/', MainHandler)
 ], debug=True)
