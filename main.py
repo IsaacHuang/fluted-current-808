@@ -63,10 +63,10 @@ class TakePhoto(webapp2.RequestHandler):
         form=cgi.FieldStorage()
         custom_pic=form.getvalue('custom_pic','')
         #存入datastore，順便轉成字串
-        
+        str photo=custom_pic
 
         template = JINJA_ENVIRONMENT.get_template('templates/edit.html')
-        self.response.out.write(template.render({}))
+        self.response.out.write(template.render({"photo":"%s"}))%photo
 
 
 
