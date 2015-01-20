@@ -59,7 +59,7 @@ class items(db.Expando):
 
 #圖片資料儲存
 class photo_info(db.Expando):
-	pid=db.StringProperty(multiline=True) #照片的號碼(utf-8)
+	pid=db.IntegerProperty() #照片的號碼
 	value=db.ByteStringProperty() #圖檔值
 	date=db.DateTimeProperty(auto_now_add=True) #時間值
 

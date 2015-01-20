@@ -25,7 +25,7 @@ import urllib2
 import cgi
 from google.appengine.ext import db
 from datetime import datetime
-import DatabaseClassModel
+from DatabaseClassModel import photo_info
 
 
 
@@ -36,12 +36,12 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 
 
-def decode_if_needed(data):
+"""def decode_if_needed(data):
     if data.startswith('data') and 'base64' in data:
         # remove data URL prefixes
         data = data.split('base64,', 1)[1]
         data = base64.standard_b64decode(data)
-    return data
+    return data"""
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -62,17 +62,14 @@ class TakePhoto(webapp2.RequestHandler):
     def post(self):
         form=cgi.FieldStorage()
         custom_pic=form.getvalue('custom_pic','')
-        print "<img src='data:image/jpeg;base64,%s' />"%custom_pic
-        #print "<script>document.cookie='image= %s';document.location.href='/templates/edit.html'</script>"% custom_pic.encode('base64')
         #存入datastore，順便轉成字串
         
 
-class EditBoard(webapp2.RequestHandler):
-    def post(self):
         template = JINJA_ENVIRONMENT.get_template('templates/edit.html')
-        self.response.out.write(template.render({}))   
+        self.response.out.write(template.render({}))
+
 
 
 APP = webapp2.WSGIApplication([
-    ('/', MainHandler),('/facebook',TakePhoto),('/EditBoard',EditBoard)
+    ('/', MainHandler),('/facebook',TakePhoto)
 ], debug=True)
