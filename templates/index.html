@@ -61,17 +61,45 @@
                   <div id="servicesSlider"><br><br>
                     <ul class="slides">
                       <li>
-                        <h1 class="arrow">中原大草皮</h1>
-                        <div class="iphone">
-                          <div class="wp3"></div>
-                        </div>
+                        <h1 class="arrow">1</h1>
+                        <img src="https://sites.google.com/site/cycufindyourmemory/config/pagetemplates/img/tumbnail-background-1.jpg">
+                        <br>
                       </li>
                       <li>
-                        <h1 class="arrow">中原教學大樓</h1>  
+                        <h1 class="arrow">2</h1>
+                        <img src="https://sites.google.com/site/cycufindyourmemory/config/pagetemplates/img/thumbnail-background-2.jpg">
+                        <br>
                       </li>
                       <li>
-                        <h1 class="arrow">中原資館樓</h1>
+                        <h1 class="arrow">3</h1>
+                        <img src="https://sites.google.com/site/cycufindyourmemory/config/pagetemplates/img/thumbnail-background-3.jpg">
+                        <br>
                       </li>
+                      <li>
+                        <h1 class="arrow">4</h1>
+                        <img src="https://sites.google.com/site/cycufindyourmemory/config/pagetemplates/img/thumbnail-background-4.jpg">
+                        <br>
+                      </li>
+                      <li>
+                        <h1 class="arrow">5</h1>
+                        <img src="https://sites.google.com/site/cycufindyourmemory/config/pagetemplates/img/thumbnail-background-5.jpg">
+                        <br>
+                      </li>
+                      <li>
+                        <h1 class="arrow">6</h1>
+                        <img src="https://sites.google.com/site/cycufindyourmemory/config/pagetemplates/img/thumbnail-background-6.jpg">
+                        <br>
+                      </li>
+                      <li>
+                        <h1 class="arrow">7</h1>
+                        <img src="https://sites.google.com/site/cycufindyourmemory/config/pagetemplates/img/thumbnail-background-7.jpg">
+                        <br>
+                      </li>
+                      <li>
+                        <h1 class="arrow">8</h1>
+                        <img src="https://sites.google.com/site/cycufindyourmemory/config/pagetemplates/img/thumbnail-background-8.jpg">
+                        <br>
+                      </li>  
                     </ul>
                   </div>
                 </div>
@@ -103,21 +131,33 @@
                 </div>
                 <div class="abox">
                   <p>準備好後，請記得微笑！</p>
-                  <!--將表格傳送至=>php Server的url-->
-                  <form role="form" id="form1" action="http://linen-totality-802.appspot.com/" enctype="multipart/form-data" method="post">
-                    <!--拍照後data的存放地點-->
-                    <input type="hidden" name="custom_pic" id="custom_pic">
-                    <!--<input type="hidden" name="is_video" id="is_video" value="yes">-->
-                    <!--執行拍照-->
-                    <button type="button" class="btn btn-primary" id="screenshot-button">Take!</button>
-                    <input type="submit" class="btn btn-primary" value="確定" id="confirm">
-                    <button type="button" class="btn btn-primary" name="showvid-button"id="showvid-button">Again!</button>
-                  </form>  <br/>
+                    <br/>
                     <div class="row">
-                      <div class="col-md-12" id='screen'>
+                      <div class="col-md-10 col-md-offset-1" id='screen'>
                         <!--螢幕的即時呈現-->
                         <video id="videoscreen" style="width:95%;" autoplay></video>
                         <img id="screen-stream" src="" alt="" />
+                        <!--將表格傳送至=>php Server的url-->
+                        <form role="form" id="form1" action="http://linen-totality-802.appspot.com/" enctype="multipart/form-data" method="post">
+                          <label for="background">請選擇您剛挑中的背景:</label>
+                          <select class="selectpicker" id="background" name="background">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                          </select>
+                          <!--拍照後data的存放地點-->
+                          <input type="hidden" name="custom_pic" id="custom_pic">
+                          <!--<input type="hidden" name="is_background" id="is_background">-->
+                          <!--執行拍照-->
+                          <button type="button" class="btn btn-primary" id="screenshot-button">Take!</button>
+                          <input type="submit" class="btn btn-primary" value="確定" id="confirm">
+                          <button type="button" class="btn btn-primary" name="showvid-button"id="showvid-button">Again!</button>
+                        </form>
                         <!--拍照後圖片呈現-->
                         <img id="screenshot" style="width:95%;" src="">
                         <canvas id="screenshot-canvas"></canvas>
