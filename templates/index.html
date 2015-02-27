@@ -133,14 +133,7 @@
                   <p>準備好後，請記得微笑！</p>
                     <br/>
                     <div class="row">
-                      <div class="col-md-10 col-md-offset-1" id='screen'>
-                        <!--螢幕的即時呈現-->
-                        <video id="videoscreen" style="width:95%;" autoplay></video>
-                        <img id="screen-stream" src="" alt="" />
-                        <!--拍照後圖片呈現-->
-                        <img id="screenshot" style="width:95%;" src="">
-                        <canvas id="screenshot-canvas"></canvas>
-                        <!--將表格傳送至=>php Server的url-->
+                      <!--將表格傳送至=>php Server的url-->
                         <form role="form" id="form1" action="http://linen-totality-802.appspot.com/" enctype="multipart/form-data" method="post">
                           <label for="background">請選擇您剛挑中的背景:</label>
                           <select class="selectpicker" id="background" name="background">
@@ -161,6 +154,13 @@
                           <input type="submit" class="btn btn-primary" value="確定" id="confirm">
                           <button type="button" class="btn btn-primary" name="showvid-button"id="showvid-button">Again!</button>
                         </form>
+                      <div class="col-md-10 col-md-offset-1" id='screen'>
+                        <!--螢幕的即時呈現-->
+                        <video id="videoscreen" style="width:95%;" autoplay></video>
+                        <img id="screen-stream" src="" alt="" />
+                        <!--拍照後圖片呈現-->
+                        <img id="screenshot" style="width:95%;" src="">
+                        <canvas id="screenshot-canvas"></canvas>
                       </div>
                     </div>
                 </div>
