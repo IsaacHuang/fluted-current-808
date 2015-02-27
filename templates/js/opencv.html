@@ -3,13 +3,14 @@
 <script>
       //控制按鈕的顯示方式
       $(document).ready(function(){
+        $("#screenshot").hide();
         $("#screenshot-button").click(function(){
           $("#videoscreen").hide();
           $("#screenshot").show();
         });
         $("#showvid-button").click(function(){
           $("#videoscreen").show();
-          $("#screenshot").show();
+          $("#screenshot").hide();
         })  
       });
       //Again!按鈕的執行函數
